@@ -1,0 +1,46 @@
+Movie_duration = [120, 150, 180, 160, 150, 140, 130]
+Movie_duration_less = []
+Movie_duration_more = []
+result = []
+d = 250
+f = d-30
+q = f/2
+summe = 0
+print(f)
+Max_less1 = 0
+Max_less2 = 0
+
+
+for i in range(len(Movie_duration)):
+    if (Movie_duration[i] < q):
+        Movie_duration_less.append(Movie_duration[i])
+    if (Movie_duration[i] > q):
+        Movie_duration_more.append(Movie_duration[i])
+for j in range(len(Movie_duration_less)):
+    if(Max_less1 < Movie_duration_less[j]):
+        Max_less1 = Movie_duration_less[j]
+    if(Max_less1 > Movie_duration_less[j] and Max_less2 < Movie_duration_less[j]):
+        Max_less2 = Movie_duration_less[j]
+    for k in range(len(Movie_duration_more)):
+        time = Movie_duration_less[j] + Movie_duration_more[k]
+        if(time < f and time > summe):
+            summe = time
+            result = [Movie_duration_less[j], Movie_duration_more[k]]
+
+if(summe == 0):
+    result = [Max_less1, Max_less2]
+if(result[1] == 0):
+    print("there is no result")
+else:
+    for p in range(len(result)):
+        print(result[p])
+           
+print(Max_less1, Max_less2)
+
+"""
+00 01 02 03  30 20 10 00
+10 11 12 13  31 21 11 02
+20 21 22 23  32 22 12 01
+30 31 32 33  33 23 13 03
+
+"""
